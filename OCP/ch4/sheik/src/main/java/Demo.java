@@ -21,12 +21,12 @@ public class Demo {
                 "male", "shock", 2, "Sheik");
         pokedex.add(pikachu);
 
-        Pokemon bulbasaur = new Pokemon("bulbasaur", "gras", 1, 3,
-                "female", "scent", 2, "Xander");
+        Pokemon bulbasaur = new Pokemon("farfetch'd", "normal", 1, 3,
+                "non-binary", "keen eye", 2, "Xander");
         pokedex.add(bulbasaur);
 
         Pokemon wartortle = new Pokemon("wartortle", "water", 2, 3,
-                "male", "shock", 3, "Haoran");
+                "male", "shell", 3, "Haoran");
         pokedex.add(wartortle);
 
         Pokemon charizard = new Pokemon("charizard", "fire", 3, 3,
@@ -50,8 +50,7 @@ public class Demo {
 
     private void search(String input) {
         Optional<Pokemon> result = pokedex.stream()
-                .filter(pokemon -> pokemon.getName()
-                        .contains(input))
+                .filter(pokemon -> pokemon.getName().contains(input))
                 .findFirst();
 
         if (result.isPresent()) {
