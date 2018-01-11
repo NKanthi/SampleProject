@@ -1,6 +1,6 @@
 public class Pokemon {
     private final String name;
-    private final String type;
+    private final Type type;
     private final int currentEvolutionStage;
     private final int maximumEvolutionStage;
     private final String gender;
@@ -8,7 +8,7 @@ public class Pokemon {
     private final int numberOfAttacks;
     private final String trainer;
 
-    public Pokemon(String name, String type, int currentEvolutionStage, int maximumEvolutionStage, String gender,
+    public Pokemon(String name, Type type, int currentEvolutionStage, int maximumEvolutionStage, String gender,
                    String ability, int numberOfAttacks, String trainer) {
         this.name = name;
         this.type = type;
@@ -24,7 +24,7 @@ public class Pokemon {
         return name;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 

@@ -17,27 +17,27 @@ public class Demo {
     }
 
     private void populatePokedex() {
-        Pokemon pikachu = new Pokemon("pikachu", "electric", 1, 2,
+        Pokemon pikachu = new Pokemon("pikachu", Type.ELECTRIC, 1, 2,
                 "male", "shock", 2, "Sheik");
         pokedex.add(pikachu);
 
-        Pokemon bulbasaur = new Pokemon("farfetch'd", "normal", 1, 3,
+        Pokemon farfetchd = new Pokemon("farfetch'd", Type.NORMAL, 1, 3,
                 "non-binary", "keen eye", 2, "Xander");
-        pokedex.add(bulbasaur);
+        pokedex.add(farfetchd);
 
-        Pokemon wartortle = new Pokemon("wartortle", "water", 2, 3,
+        Pokemon wartortle = new Pokemon("wartortle", Type.WATER, 2, 3,
                 "male", "shell", 3, "Haoran");
         pokedex.add(wartortle);
 
-        Pokemon charizard = new Pokemon("charizard", "fire", 3, 3,
+        Pokemon charizard = new Pokemon("charizard", Type.FIRE, 3, 3,
                 "female", "blaze", 4, "Aeron");
         pokedex.add(charizard);
 
-        Pokemon eevee = new Pokemon("eevee", "normal", 1, 2,
+        Pokemon eevee = new Pokemon("eevee", Type.NORMAL, 1, 2,
                 "male", "-", 4, "Shadab");
         pokedex.add(eevee);
 
-        Pokemon pigeotto = new Pokemon("pigeotto", "flying", 2, 3,
+        Pokemon pigeotto = new Pokemon("pigeotto", Type.FLYING, 2, 3,
                 "female", "levitate", 3, "Alfonso");
         pokedex.add(pigeotto);
     }
@@ -62,7 +62,7 @@ public class Demo {
 
     private void print(Optional<Pokemon> result) {
         System.out.println("Name: " + result.get().getName());
-        System.out.println("Type: " + result.get().getType());
+        System.out.println("Type: " + result.get().getType().name().toLowerCase());
         System.out.println("Current Evolution Stage: " + result.get().getCurrentEvolutionStage());
         System.out.println("Maximum Evolution Stage: " + result.get().getMaximumEvolutionStage());
         System.out.println("Gender: " + result.get().getGender());
