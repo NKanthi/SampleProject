@@ -20,6 +20,7 @@ public class Database {
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                                                     ResultSet.CONCUR_UPDATABLE)) {
+
             stmt.executeUpdate("DROP TABLE animal");
             stmt.executeUpdate("DROP TABLE species");
 
@@ -34,14 +35,17 @@ public class Database {
                     + "name VARCHAR(255), "
                     + "age INTEGER)");
 
-            stmt.executeUpdate("INSERT INTO species VALUES (1, 'African Elephant', 7.5)");
-            stmt.executeUpdate("INSERT INTO species VALUES (2, 'Zebra', 1.2)");
+            stmt.executeUpdate("INSERT INTO species VALUES " +
+                                        "(1, 'African Elephant', 7.5), " +
+                                        "(2, 'Zebra', 1.2) ");
 
-            stmt.executeUpdate("INSERT INTO animal VALUES (1, 1, 'Elsa', 2)");
-            stmt.executeUpdate("INSERT INTO animal VALUES (2, 2, 'Zelda', 3)");
-            stmt.executeUpdate("INSERT INTO animal VALUES (3, 1, 'Ester', 4)");
-            stmt.executeUpdate("INSERT INTO animal VALUES (4, 1, 'Eddie', 1)");
-            stmt.executeUpdate("INSERT INTO animal VALUES (5, 2, 'Zoe', 10)");
+            stmt.executeUpdate("INSERT INTO animal VALUES (1, 1, 'Elsa', 2), " +
+                                        "(2, 2, 'Zelda', 3), " +
+                                        "(3, 1, 'Ester', 4)," +
+                                        "(4, 1, 'Eddie', 1)," +
+                                        "(5, 2, 'Zoe', 10)");
+
+
         }
     }
 
@@ -54,7 +58,7 @@ public class Database {
              Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                      ResultSet.CONCUR_READ_ONLY)) {
 
-            ResultSet resultSet = stmt.executeQuery("select id, age from animal");
+            ResultSet resultSet = stmt.executeQuery("SELECT id, age FROM animal");
 
             while(resultSet.next()){
                 ageMap.put(resultSet.getInt("id"), resultSet.getInt("age"));

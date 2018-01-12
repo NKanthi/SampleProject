@@ -10,13 +10,13 @@ public class Demo {
 
         ScheduledExecutorService service = Executors.newScheduledThreadPool(2);
 
-        Runnable run = () -> ageMap.entrySet().parallelStream().filter(entry -> entry.getValue()>2).forEach(entry -> System.out.print(entry.getValue()));
+        Runnable run = () -> ageMap.entrySet().parallelStream().filter(entry -> entry.getValue()>2).forEach(entry -> System.out.print(entry.getValue() + " "));
         Callable call = () -> ageMap.entrySet().parallelStream().filter(entry -> entry.getValue()>2).map(entry -> entry.getKey()).collect(Collectors.toList());
 
         service.schedule(run, 1, TimeUnit.SECONDS);
         Future result = service.schedule(call, 5, TimeUnit.SECONDS);
 
-        System.out.println("The id of animal older than 2. "+ result.get());
+        System.out.println("The id of animal older than 2 : "+ result.get());
 
         service.shutdown();
 
