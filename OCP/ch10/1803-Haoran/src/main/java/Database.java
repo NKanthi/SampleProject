@@ -35,23 +35,32 @@ public class Database {
                     + "name VARCHAR(255), "
                     + "age INTEGER)");
 
+        }
+    }
+
+    private void updateDatabase() throws SQLException{
+        String url = "jdbc:derby:zoo";
+        try (Connection conn = DriverManager.getConnection(url);
+             Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                     ResultSet.CONCUR_UPDATABLE)) {
             stmt.executeUpdate("INSERT INTO species VALUES " +
-                                        "(1, 'African Elephant', 7.5), " +
-                                        "(2, 'Zebra', 1.2) ");
+                    "(1, 'African Elephant', 7.5), " +
+                    "(2, 'Zebra', 1.2) ");
 
             stmt.executeUpdate("INSERT INTO animal VALUES (1, 1, 'Elsa', 2), " +
-                                        "(2, 2, 'Zelda', 3), " +
-                                        "(3, 1, 'Ester', 4)," +
-                                        "(4, 1, 'Eddie', 1)," +
-                                        "(5, 2, 'Zoe', 10)");
-
+                    "(2, 2, 'Zelda', 3), " +
+                    "(3, 1, 'Ester', 4)," +
+                    "(4, 1, 'Eddie', 1)," +
+                    "(5, 2, 'Zoe', 10)");
 
         }
+
     }
 
     public Map<Integer, Integer> getAnimalAge() throws SQLException{
         Map<Integer, Integer> ageMap = new TreeMap<>();
         setupDataBase();
+        updateDatabase();
 
         String url = "jdbc:derby:zoo";
         try (Connection conn = DriverManager.getConnection(url);
