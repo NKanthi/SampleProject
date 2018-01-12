@@ -1,0 +1,19 @@
+<div>
+    <h3>Whose flag is this? </h3>   
+</div>
+
+<div>
+	<img [src] = "flag" width="300" height="300"/>
+</div><br><br>
+ 
+<div>
+	<input type="button"  id = "{{ btnTextOne }}" value="{{ btnTextOne }}" (click)="checkCountryInput($event)"/>&nbsp;&nbsp;&nbsp;	
+	<input type="button"  id = "{{ btnTextTwo }}" value="{{ btnTextTwo }}" (click)="checkCountryInput($event)"/><br><br>
+	<input type="button"  value="{{ btnGenerateNew }}" (click)="getRandomCoutriesToDisplay()"/>
+ </div>
+ <br><br>
+ <div>  
+	  <p>
+			{{ message }}
+	 </p>
+</div>
