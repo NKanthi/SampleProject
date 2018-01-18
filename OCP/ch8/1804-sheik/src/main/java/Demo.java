@@ -6,6 +6,10 @@ public class Demo {
 
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final Random RANDOM = new Random();
+    private static final int WIN_CONDITION_ONE = -2;
+    private static final int WIN_CONDITION_TWO = 1;
+    private static final int LOSE_CONDITION_ONE = -1;
+    private static final int LOSE_CONDITION_TWO = 2;
     private boolean gameOver = false;
     private int score = 0;
 
@@ -31,7 +35,11 @@ public class Demo {
     }
 
     private Option playerInput() {
-        return checkInput(Integer.parseInt(SCANNER.next()));
+        int input = 0;
+        try {
+            input = Integer.parseInt(SCANNER.next());
+        } catch (NumberFormatException ignored) {}
+        return checkInput(input);
     }
 
     private Option computerInput() {
@@ -69,10 +77,10 @@ public class Demo {
         System.out.println("player: " + player);
         System.out.println("computer: " + computer);
 
-        if (result == -2 || result == 1) {
+        if (result == WIN_CONDITION_ONE || result == WIN_CONDITION_TWO) {
             score += 1;
             System.out.println("WIN");
-        } else if (result == -1 || result == 2) {
+        } else if (result == LOSE_CONDITION_ONE || result == LOSE_CONDITION_TWO) {
             gameOver = true;
             System.out.println("LOSE");
         } else {
