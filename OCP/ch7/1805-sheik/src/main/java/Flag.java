@@ -1,7 +1,7 @@
 public class Flag {
     private final String flagName;
 
-    public Flag(String flagName) {
+    Flag(String flagName) {
         this.flagName = flagName;
     }
 

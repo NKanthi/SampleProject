@@ -11,11 +11,11 @@ public class Team {
         return teamName;
     }
 
-    private boolean hasTeamFlag() {
+    private boolean getTeamFlag() {
         return hasTeamFlag;
     }
 
-    private void setHasTeamFlag(boolean hasTeamFlag) {
+    private void setTeamFlag(boolean hasTeamFlag) {
         this.hasTeamFlag = hasTeamFlag;
     }
 
@@ -38,12 +38,12 @@ public class Team {
     }
 
     public void livelock(Team enemyTeam, Flag teamFlag) {
-        while(enemyTeam.hasTeamFlag()) {
-            System.out.println(teamName + " waiting for " + teamFlag);
+        while(enemyTeam.getTeamFlag()) {
+            System.out.println(teamName + " says to " + enemyTeam + " release " + teamFlag);
             waiting();
         }
 
         System.out.println(teamName + " scored.");
-        enemyTeam.setHasTeamFlag(false);
+        enemyTeam.setTeamFlag(false);
     }
 }

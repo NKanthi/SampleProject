@@ -5,28 +5,28 @@ import java.util.concurrent.Executors;
 public class Demo {
     private ExecutorService service = null;
 
-    private Team a = new Team("Team A");
-    private Team b = new Team("Team B");
-    private Flag teamA = new Flag("Flag team A");
-    private Flag teamB = new Flag("Flag team B");
+    private Team a = new Team(Constant.TEAM_A);
+    private Team b = new Team(Constant.TEAM_B);
+    private Flag teamA = new Flag(Constant.FLAG_TEAM_A);
+    private Flag teamB = new Flag(Constant.FLAG_TEAM_B);
 
     public static void main(String[] args) {
         new Demo();
     }
 
     private Demo() {
-        instructions();
-        chooseScenario();
+        gameInstructions();
+        chooseGameScenario();
     }
 
-    private void instructions() {
+    private void gameInstructions() {
         System.out.println("Please choice a scenario \'deadlock\' or \'livelock\'");
     }
 
-    private void chooseScenario() {
-        Scanner scanner = new Scanner(System.in);
+    private void chooseGameScenario() {
+        Scanner input = new Scanner(System.in);
 
-        switch (scanner.next()) {
+        switch (input.next()) {
             case "deadlock":
                 deadlock();
                 break;
@@ -37,6 +37,8 @@ public class Demo {
                 System.out.println("Invalid choice.");
                 System.exit(0);
         }
+
+        input.close();
     }
 
     private void deadlock() {
