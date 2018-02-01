@@ -8,6 +8,7 @@ import java.util.Random;
 public class Demo {
 
     private static final Path PATH = Paths.get("random");
+    private static final int NUM_OF_FOLDERS = 3;
 
     public static void main(String[] args) {
         Demo demo = new Demo();
@@ -19,7 +20,7 @@ public class Demo {
     }
 
     private void setupFolderStructure() {
-        for(int i = 0; i < 3; i++) {
+        for(int i = 0; i < NUM_OF_FOLDERS; i++) {
             File file = new File(String.valueOf(PATH.resolve(String.valueOf(i))));
             file.mkdirs();
         }
@@ -27,7 +28,7 @@ public class Demo {
 
     private void hideTextFile() {
         Random random = new Random();
-        Path hiddenPath = PATH.resolve(Paths.get(String.valueOf(random.nextInt(3))));
+        Path hiddenPath = PATH.resolve(Paths.get(String.valueOf(random.nextInt(NUM_OF_FOLDERS))));
 
         try {
             Files.createFile(hiddenPath.resolve("hidden.txt"));
