@@ -3,7 +3,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Comparator;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Demo {
 
@@ -12,24 +14,27 @@ public class Demo {
 
     public static void main(String[] args) {
         Demo demo = new Demo();
-        demo.setupFolderStructure();
+        demo.createFolderStructure();
         demo.hideTextFile();
         demo.displayFolderStructure();
         demo.searchTextFile();
         demo.deleteFolderStructure();
     }
 
-    private void setupFolderStructure() {
+    private void createFolderStructure() {
         for(int i = 0; i < NUM_OF_FOLDERS; i++) {
-            File file = new File(String.valueOf(PATH.resolve(String.valueOf(i))));
+            File file = new File(getFolderName(i));
             file.mkdirs();
         }
     }
 
+    private String getFolderName(int i) {
+        return PATH.resolve(String.valueOf(i)).toString();
+    }
+
     private void hideTextFile() {
         Random random = new Random();
-        Path hiddenPath = PATH.resolve(Paths.get(String.valueOf(random.nextInt(NUM_OF_FOLDERS))));
-
+        Path hiddenPath = Paths.get(getFolderName(random.nextInt(NUM_OF_FOLDERS)));
         try {
             Files.createFile(hiddenPath.resolve("hidden.txt"));
         } catch (IOException e) {
@@ -40,8 +45,8 @@ public class Demo {
     private void displayFolderStructure() {
         try {
             Files.list(PATH)
-                    .filter(p -> Files.isDirectory(p))
-                    .map(p -> p.toString())
+                    .filter(Files::isDirectory)
+                    .map(Path::toString)
                     .forEach(System.out::println);
             promptInput();
         } catch (IOException e) {
@@ -51,18 +56,14 @@ public class Demo {
 
     private void promptInput() {
         System.out.println("Please press enter");
-        try {
-            System.in.read();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        new Scanner(System.in).nextLine();
     }
 
     private void searchTextFile() {
         try {
             Files.walk(PATH)
-                    .filter(p -> Files.isRegularFile(p))
-                    .map(p -> p.toString())
+                    .filter(Files::isRegularFile)
+                    .map(Path::toString)
                     .forEach(System.out::println);
         } catch (IOException e) {
             e.printStackTrace();
@@ -70,20 +71,14 @@ public class Demo {
     }
 
     private void deleteFolderStructure() {
-        deleteFolderStructureRecursively(PATH.toFile().listFiles());
         try {
+            Files.walk(PATH)
+                    .map(Path::toFile)
+                    .sorted(Comparator.comparing(File::isDirectory) )
+                    .forEach(File::delete);
             Files.deleteIfExists(PATH);
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-
-    private void deleteFolderStructureRecursively(File[] file) {
-        for (File childFile : file) {
-            if (childFile.isDirectory()) {
-                deleteFolderStructureRecursively(childFile.listFiles());
-            }
-            childFile.delete();
         }
     }
 }
