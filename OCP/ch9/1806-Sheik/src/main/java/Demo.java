@@ -1,11 +1,14 @@
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Demo {
 
@@ -61,10 +64,11 @@ public class Demo {
 
     private void searchTextFile() {
         try {
-            Files.walk(PATH)
+            List<File> fileList = Files.walk(PATH)
                     .filter(Files::isRegularFile)
-                    .map(Path::toString)
-                    .forEach(System.out::println);
+                    .map(Path::toFile)
+                    .collect(Collectors.toList());
+            System.out.println(fileList);
         } catch (IOException e) {
             e.printStackTrace();
         }
