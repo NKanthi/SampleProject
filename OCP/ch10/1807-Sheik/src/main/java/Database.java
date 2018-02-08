@@ -4,12 +4,12 @@ public class Database {
     private String url = "jdbc:derby:apollo;";
 
     public Database() {
+        dropTable();
+
         String url = this.url + "create=true";
 
         try (Connection connection = DriverManager.getConnection(url);
              Statement statement = connection.createStatement()) {
-
-            statement.executeUpdate("DROP TABLE apollo");
 
             statement.executeUpdate("CREATE TABLE apollo ("
                     + "id INTEGER GENERATED ALWAYS AS IDENTITY "
@@ -21,6 +21,15 @@ public class Database {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void dropTable() {
+        try (Connection connection = DriverManager.getConnection(url);
+             Statement statement = connection.createStatement()) {
+            statement.executeUpdate("DROP TABLE apollo");
+        } catch (SQLException e) {
+            return;
         }
     }
 
@@ -40,6 +49,24 @@ public class Database {
 
     public void select(String input) {
         String query = "SELECT * FROM apollo WHERE name = '" + input + "'";
+
+        try (Connection connection = DriverManager.getConnection(url);
+             Statement statement = connection.createStatement()) {
+
+            ResultSet result = statement.executeQuery(query);
+
+            while (result.next()) {
+                System.out.println("ID: " + result.getString("id"));
+                System.out.println("Name: " + result.getString("name"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void selectAll() {
+        String query = "SELECT * FROM apollo";
 
         try (Connection connection = DriverManager.getConnection(url);
              Statement statement = connection.createStatement()) {

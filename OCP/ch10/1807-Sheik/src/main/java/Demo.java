@@ -21,7 +21,8 @@ public class Demo {
         System.out.println("What do you want to do?");
         System.out.println("(1) INSERT");
         System.out.println("(2) SELECT");
-        System.out.println("(3) CLOSE");
+        System.out.println("(3) SELECT ALL");
+        System.out.println("(4) CLOSE");
     }
 
     private String playerInput() {
@@ -37,6 +38,9 @@ public class Demo {
                 select();
                 break;
             case 3:
+                database.selectAll();
+                break;
+            case 4:
                 System.out.println("Goodbye.");
                 isConnected = false;
                 break;
