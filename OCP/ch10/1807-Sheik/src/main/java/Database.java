@@ -3,9 +3,21 @@ import java.sql.*;
 public class Database {
     private String url = "jdbc:derby:apollo;";
 
-    public Database() {
+    Database() {
         dropTable();
+        createTable();
+        populateTable();
+    }
 
+    private void dropTable() {
+        try (Connection connection = DriverManager.getConnection(url);
+             Statement statement = connection.createStatement()) {
+            statement.executeUpdate("DROP TABLE apollo");
+        } catch (SQLException ignored) {
+        }
+    }
+
+    private void createTable() {
         String url = this.url + "create=true";
 
         try (Connection connection = DriverManager.getConnection(url);
@@ -16,20 +28,21 @@ public class Database {
                     + "(START WITH 1, INCREMENT BY 1) PRIMARY KEY,"
                     + "name VARCHAR(24) NOT NULL)");
 
-            statement.executeUpdate("INSERT INTO apollo(name) VALUES ('Sheik')");
-            statement.executeUpdate("INSERT INTO apollo(name) VALUES ('Xander')");
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private void dropTable() {
+    private void populateTable() {
+        String url = this.url + "create=true";
+
         try (Connection connection = DriverManager.getConnection(url);
              Statement statement = connection.createStatement()) {
-            statement.executeUpdate("DROP TABLE apollo");
+
+            statement.executeUpdate("INSERT INTO apollo(name) VALUES ('Sheik'), ('Xander')");
+
         } catch (SQLException e) {
-            return;
+            e.printStackTrace();
         }
     }
 
