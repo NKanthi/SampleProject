@@ -1,7 +1,6 @@
 import java.sql.*;
 
 public class Database {
-
     private String url = "jdbc:derby:apollo;";
 
     public Database() {
@@ -13,24 +12,34 @@ public class Database {
             statement.executeUpdate("DROP TABLE apollo");
 
             statement.executeUpdate("CREATE TABLE apollo ("
-                                        + "id INTEGER PRIMARY KEY, "
-                                        + "name VARCHAR(24) NOT NULL)");
+                    + "id INTEGER GENERATED ALWAYS AS IDENTITY "
+                    + "(START WITH 1, INCREMENT BY 1) PRIMARY KEY,"
+                    + "name VARCHAR(24) NOT NULL)");
 
-            statement.executeUpdate("INSERT INTO apollo VALUES (1, 'Sheik')");
-            statement.executeUpdate("INSERT INTO apollo VALUES (2, 'Xander')");
+            statement.executeUpdate("INSERT INTO apollo(name) VALUES ('Sheik')");
+            statement.executeUpdate("INSERT INTO apollo(name) VALUES ('Xander')");
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void insert(String query) {
+    public void insert(String input) {
+        String query = "INSERT INTO apollo(name) VALUES ('" + input + "')";
 
+        try (Connection connection = DriverManager.getConnection(url);
+             Statement statement = connection.createStatement()) {
+
+            statement.executeUpdate(query);
+            System.out.println("Update succesfull.");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void select(String input) {
         String query = "SELECT * FROM apollo WHERE name = '" + input + "'";
-//        String query = "SELECT * FROM apollo";
 
         try (Connection connection = DriverManager.getConnection(url);
              Statement statement = connection.createStatement()) {
@@ -38,7 +47,8 @@ public class Database {
             ResultSet result = statement.executeQuery(query);
 
             while (result.next()) {
-                System.out.println(result.getString("name"));
+                System.out.println("ID: " + result.getString("id"));
+                System.out.println("Name: " + result.getString("name"));
             }
 
         } catch (SQLException e) {
