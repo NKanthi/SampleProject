@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="styles.css">
+
+
+</head>
+<body>
+
+<div class="slideshow-container" style="max-width:120%vw; margin-top:0px">
+  <div class="mySlides w3-display-container w3-center">
+    <img id="cityImage" onmouseover= "imageFreeze()" onmouseout="imageContinue()" src="Images/honghe.jpg" style="width:1000px;height:500px">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-20 w3-hide-small">
+      <h2><a href="#Mengzi">Mengzi</a></h2>
+    </div>
+  </div>
+
+  <div class="mySlides w3-display-container w3-center">
+    <img id="cityImage" onmouseover= "imageFreeze()" onmouseout="imageContinue()" src="Images/Beijing.jpg" style="width:1000px;height:500px">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-20 w3-hide-small">
+      <h2><a href="#Beijing">Beijing</a></h2>
+    </div>
+  </div>
+
+  <div class="mySlides w3-display-container w3-center">
+    <img id="cityImage" onmouseover= "imageFreeze()" onmouseout="imageContinue()" src="Images/leiden.jpg" style="width:1000px;height:500px">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-20 w3-hide-small">
+      <h2><a href="#Leiden">Leiden</a></h2>
+    </div>
+  </div>
+
+  <div class="mySlides w3-display-container w3-center">
+    <img id="cityImage" onmouseover= "imageFreeze()" onmouseout="imageContinue()" src="Images/denhaag.jpg" style="width:1000px;height:500px">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-20 w3-hide-small">
+      <h2><a href="#Den Haag">Den Haag</a></h2>
+    </div>
+  </div>
+
+  <!-- Next and previous buttons -->
+ <a class="prev" onclick="prevSlides()">&#10094;</a>
+ <a class="next" onclick="nextSlides(1)">&#10095;</a>
+</div>
+<br>
+
+<!-- The dots/circles -->
+<div style="text-align:center">
+ <span class="dot" onclick="dotClick(0)"></span>
+ <span class="dot" onclick="dotClick(1)"></span>
+ <span class="dot" onclick="dotClick(2)"></span>
+ <span class="dot" onclick="dotClick(3)"></span>
+</div>
+
+<nav style="z-index:3;width:200px">
+  <ul>
+    <li><a href="#Mengzi" class="w3-bar-item w3-button w3-padding-large">Mengzi</a></li>
+    <li><a href="#Beijing" class="w3-bar-item w3-button w3-padding-large">Beijing</a></li>
+    <li><a href="#Leiden" class="w3-bar-item w3-button w3-padding-large">Leiden</a></li>
+    <li><a href="#Den Haag" class="w3-bar-item w3-button w3-padding-large">Den Haag</a></li>
+  </ul>
+</nav>
+
+<article id="Mengzi">
+  <h1>Mengzi</h1>
+  <p>Mengzi (Chinese: 蒙自; pinyin: Měngzì) is a city in the southeast of Yunnan province, People's Republic of China. Administratively, it is a county-level city and the seat of the Honghe Hani and Yi Autonomous Prefecture, located about 175 kilometres (109 mi) south-southeast of the provincial capital of Kunming. It is situated in the centre of a fertile valley basin on a plateau 1,000 metres (3,300 ft) above sea level. Mengzi was formerly Mengzi County (蒙自县) until October 2010, when it was upgraded to a county-level city.</p>
+</article>
+
+<article id="Beijing">
+  <h1>Beijing</h1>
+  <p>Beijing, formerly romanized as Peking, is the capital of the People's Republic of China and the world's second most populous city proper and most populous capital city. The city, located in northern China, is governed as a direct-controlled municipality under the national government with 16 urban, suburban, and rural districts. Beijing Municipality is surrounded by Hebei Province with the exception of neighboring Tianjin Municipality to the southeast; together the three divisions form the Jingjinji metropolitan region and the national capital region of China</p>
+</article>
+
+<article id="Leiden">
+  <h1>Leiden</h1>
+  <p>Leiden in English and archaic Dutch also Leyden) is a city and municipality in the Dutch province of South Holland. The municipality of Leiden has a population of 122,915, but the city forms one densely connected agglomeration with its suburbs Oegstgeest, Leiderdorp, Voorschoten and Zoeterwoude with 206,647 inhabitants. The Netherlands Central Bureau of Statistics (CBS) further includes Katwijk in the agglomeration which makes the total population of the Leiden urban agglomeration 270,879, and in the larger Leiden urban area also Teylingen, Noordwijk, and Noordwijkerhout are included with in total 348,868 inhabitants. Leiden is located on the Oude Rijn, at a distance of some 20 kilometres (12 miles) from The Hague to its south and some 40 km (25 mi) from Amsterdam to its north. The recreational area of the Kaag Lakes (Kagerplassen) lies just to the northeast of Leiden</p>
+</article>
+
+<article id="Den Haag">
+  <h1>Den Haag</h1>
+  <p>The Hague is the seat of the cabinet of the Netherlands, the States General, the Supreme Court, and the Council of State, but the city is not the capital of the Netherlands, which constitutionally is Amsterdam. Most foreign embassies in the Netherlands and 150 international organisations are located in the city, including the International Court of Justice and the International Criminal Court, which makes The Hague one of the major cities hosting the United Nations, along with New York City, Geneva, Vienna, Rome, and Nairobi. King Willem-Alexander lives at the Huis ten Bosch and works at the Noordeinde Palace in The Hague, together with Queen Máxima. The Hague is also home to the world headquarters of Royal Dutch Shell and numerous other major Dutch companies.</p>
+</article>
+
+<!-- The Contact Section -->
+  <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
+    <h2 class="w3-wide w3-center"><b>CONTACT</b></h2>
+    <div class="w3-row w3-padding-32">
+      <div class="w3-col m6 w3-large w3-margin-bottom">
+        <i style="width:30px"></i> Den Haag, the Netherlands<br>
+        <i style="width:30px"></i> Phone: +31 23198347<br>
+        <i style="width:30px"> </i> Email: hding@qualogy.com<br>
+      </div>
+      <div class="w3-col m6">
+        <form>
+          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+            <div class="w3-half">
+              <input id="inputName" class="w3-input w3-border" type="text" placeholder="Name" required/>
+            </div>
+            <div class="w3-half">
+              <input id="inputEmail" class="w3-input w3-border" type="text" placeholder="Email" required/>
+            </div>
+          </div>
+          <textarea id="inputMessage" class="w3-input w3-border" placeholder="Message"></textarea>
+          <button type="button" class="w3-button w3-black w3-section w3-right" onclick="showInfo()">CHECK</button>
+          <button type="button" class="w3-button w3-black w3-section w3-right" onclick="checkInfo()">SEND</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<script src="myScript.js"> </script>
+</body>
+</html>
