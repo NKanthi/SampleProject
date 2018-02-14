@@ -39,6 +39,11 @@ article {
     overflow: hidden;
 }
 
+.slideshowSize {
+  max-width:120%vw;
+  margin-top:0px
+}
+
 
 .slideshow-container {
   max-width: 1000px;

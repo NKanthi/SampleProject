@@ -69,6 +69,8 @@ function checkInfo() {
       var myJSON = JSON.stringify(messageInfo);
       localStorage.setItem("userMessage", myJSON);
 
+      alert("Message submit successfully.");
+
     } else {
       alert("Invalid email address");
     }
@@ -78,11 +80,15 @@ function checkInfo() {
 }
 
 function showInfo() {
-  var text = localStorage.getItem("userMessage");
-  var obj = JSON.parse(text);
-  if (obj != null) {
-    alert(JSON.stringify(obj, null, 4));
-  } else {
-    alert("please submit a message.");
+  try{
+    var userMessage = localStorage.getItem("userMessage");
+    var userObj = JSON.parse(userMessage);
+    if (userObj != null) {
+      alert(JSON.stringify(userObj, null, 4));
+    } else {
+      alert("please submit a message.");
+    }
+  } catch(e) {
+    alert(e.message);
   }
 }
