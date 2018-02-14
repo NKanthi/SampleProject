@@ -1,6 +1,6 @@
 var myIndex = 0;
-var imageSources = ["Images/honghe.jpg", "Images/beijing.jpg", "Images/leiden.jpg", "Images/denhaag.jpg"];
-var imageNames = ["Mengzi", "Beijing", "Leiden", "Den Haag"];
+var imageSource = ["Images/honghe.jpg", "Images/beijing.jpg", "Images/leiden.jpg", "Images/denhaag.jpg"];
+var imageName = ["Mengzi", "Beijing", "Leiden", "Den Haag"];
 var slides = document.getElementsByClassName("mySlides");
 var dots = document.getElementsByClassName("dot");
 
