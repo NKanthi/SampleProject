@@ -1,0 +1,32 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/app-layout/app-layout.html">
+<link rel="import" href="../../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="another-page">
+  <template>
+    <style>
+    :host {
+      display: block;
+      font-family: Georgia, serif;
+    }
+    </style>
+
+        <h1>another page</h1>
+
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class AnotherPage extends Polymer.Element {
+      static get is() { return 'another-page'; }
+}
+
+    window.customElements.define(AnotherPage.is, AnotherPage);
+  </script>
+</dom-module>

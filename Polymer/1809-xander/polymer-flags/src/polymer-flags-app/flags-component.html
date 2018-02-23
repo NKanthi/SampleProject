@@ -1,0 +1,145 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/app-layout/app-layout.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../../bower_components/app-route/app-location.html">
+<link rel="import" href="../../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="flags-component">
+  <template>
+    <style>
+    paper-button {
+      color: white;
+    }
+    paper-button.another {
+      background: var(--paper-blue-500);
+      width: 100%;
+    }
+    paper-button.another:hover {
+      background: var(--paper-light-blue-500);
+    }
+    paper-button.answer {
+      background: var(--paper-red-500);
+      flex-grow: 1;
+    }
+    paper-button.answer:hover {
+      background: var(--paper-pink-500);
+    }
+
+    iron-image {
+      border: solid;
+      width: 600px;
+      height: 400px;
+      --iron-image-width: 100%;
+       background-color: white;
+    }
+    #flag-image-container {
+      max-width: 600px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    #answer-button-container {
+      display: flex; /* or inline-flex */
+      flex-flow: row wrap;
+      justify-content:space-around;
+    }
+    </style>
+
+    <iron-ajax
+      auto
+      url="data/countrycodes.json"
+      handle-as="json"
+      on-response="_handleResponse">
+    </iron-ajax>
+
+    <div id="flag-image-container">
+      <iron-image
+        id="flag-image"
+        preload fade src="data/svg/[[correctAnswer.code]].svg">
+      </iron-image>
+
+      <div id="answer-button-container">
+        <paper-button id="optionA" class="answer" on-click="_selectAnswer">[[countryA.name]]</paper-button>
+        <paper-button id="optionB" class="answer" on-click="_selectAnswer">[[countryB.name]]</paper-button>
+      </div>
+
+      <p>[[outputMessage]]</p>
+      <paper-button class="another" id="another" on-click="__reset">Another!</paper-button>
+
+    </div>
+  </template>
+
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class FlagsComponent extends Polymer.Element {
+      static get is() { return 'flags-component'; }
+      static get properties() {
+        return {
+          countryA: {
+            type: Object
+          },
+          countryB: {
+            type: Object
+          },
+          outputMessage: {
+            type: String,
+            value: ""
+          },
+          correctAnswer: {
+           type: Object
+         },
+         userAnswer: {
+           type: String,
+         },
+         countryList: {
+           type: Object
+         }
+        };
+      }
+
+      _selectAnswer(event) {
+        let clickedButton = event.target;
+        this.userAnswer = clickedButton.textContent;
+        if(this.userAnswer == this.correctAnswer.name) {
+          this.outputMessage = `right`;
+        } else {
+          this.outputMessage = `wrong`;
+        }
+      }
+
+      _handleResponse(event) {
+
+        this.countryList = event.detail.response.countrycodes;
+        while (this.countryA == this.countryB) {
+          this.countryA = this.countryList[this.__getRandomCountry()];
+          this.countryB = this.countryList[this.__getRandomCountry()];
+        }
+
+        var random = Math.round(Math.random());
+        if (random == 1) {
+        this.correctAnswer = this.countryA;
+      } else {
+        this.correctAnswer = this.countryB;
+      }
+
+      }
+
+      __getRandomCountry() {
+        return Math.floor(Math.random() * (this.countryList.length));
+      }
+
+      __reset() {
+        location.reload();
+      }
+
+}
+
+    window.customElements.define(FlagsComponent.is, FlagsComponent);
+  </script>
+</dom-module>
