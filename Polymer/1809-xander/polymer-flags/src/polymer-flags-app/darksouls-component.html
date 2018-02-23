@@ -1,0 +1,193 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/app-layout/app-layout.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../../bower_components/app-route/app-location.html">
+<link rel="import" href="../../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="darksouls-component">
+  <template>
+    <style>
+    paper-button {
+      color: white;
+    }
+    paper-button.another {
+      background: var(--paper-blue-500);
+      width: 100%;
+    }
+    paper-button.another:hover {
+      background: var(--paper-light-blue-500);
+    }
+    paper-button.answer {
+      background: var(--paper-red-500);
+      flex-grow: 1;
+    }
+    paper-button.answer:hover {
+      background: var(--paper-pink-500);
+    }
+
+    iron-image {
+      border: solid;
+      width: 600px;
+      height: auto;
+      --iron-image-width: 100%;
+       background-color: white;
+    }
+    #flag-image-container {
+      max-width: 600px;
+      height: auto;
+      margin: 0 auto;
+    }
+    #answer-button-container {
+      display: flex; /* or inline-flex */
+      flex-flow: row wrap;
+      justify-content:space-around;
+    }
+    </style>
+
+    <iron-ajax
+      auto
+      url="data/DSbosses.json"
+      handle-as="json"
+      on-response="_handleResponse">
+    </iron-ajax>
+
+    <div id="flag-image-container">
+      <iron-image
+        id="flag-image"
+        preload fade src="[[bossImgUrl]]">
+      </iron-image>
+
+      <div id="answer-button-container">
+        <paper-button id="optionA" class="answer" on-click="_selectAnswer">[[bossA.name]]</paper-button>
+        <paper-button id="optionB" class="answer" on-click="_selectAnswer">[[bossB.name]]</paper-button>
+      </div>
+
+      <p>[[outputMessage]]</p>
+      <paper-button class="another" id="another" on-click="__reset">TRY AGAIN</paper-button>
+
+    </div>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class DarksoulsComponent extends Polymer.Element {
+      static get is() { return 'darksouls-component'; }
+      static get properties() {
+        return {
+          bossA: {
+            type: Object
+          },
+          bossB: {
+            type: Object
+          },
+          outputMessage: {
+            type: String,
+            value: ""
+          },
+          correctAnswer: {
+           type: String
+         },
+         userAnswer: {
+           type: String,
+         },
+         bossList: {
+           type: Object
+         },
+         bossImgUrl: {
+           type: String
+         },
+         googleResponse: {
+           type: String
+         }
+        };
+      }
+
+      _selectAnswer(event) {
+        let clickedButton = event.target;
+        this.userAnswer = clickedButton.textContent;
+        if(this.userAnswer == this.correctAnswer) {
+          this.outputMessage = `VICTORY`;
+        } else {
+          this.outputMessage = `YOU DIED`;
+        }
+      }
+
+      _handleResponse(event) {
+        this.bossList = event.detail.response.DSbosses;
+        while (this.bossA == this.bossB) {
+          this.bossA = this.bossList[this.__getRandomBoss()];
+          this.bossB = this.bossList[this.__getRandomBoss()];
+        }
+
+        var random = Math.round(Math.random());
+        if (random == 1) {
+          this.correctAnswer = this.bossA.name;
+        } else {
+          this.correctAnswer = this.bossB.name;
+        }
+
+      this.__setGoogleResponseByBoss(this.correctAnswer, this.__setBossImgUrlFromResponse, this);
+      }
+
+      __getRandomBoss() {
+        return Math.floor(Math.random() * (this.bossList.length));
+      }
+
+      __reset() {
+        location.reload();
+      }
+
+      //regex on the response from google to filter out the src for the first img
+      __setBossImgUrlFromResponse(context) {
+        var myRe = new RegExp(/<img class=\"rg_ic rg_i\"(?: data-src=\"(.+?)\").+?>/g);
+        var match = myRe.exec(context.googleResponse);
+        context.bossImgUrl = match[1];
+      }
+
+      //replaces spaces with + for the google search query and replaces spider bosses with puppy for my Arachnophobic friend
+      __createGoogleSearchQueryFromBoss(boss) {
+        if((boss == 'Chaos Witch Quelaag') || (boss == 'The Dukes Dear Freja')) {
+          boss = 'puppy';
+        }
+
+        while(boss.includes(' ')) {
+          boss = boss.replace(' ', '+')
+        }
+
+        return 'https://www.google.nl/search?tbm=isch&as_q=' + boss + '+darksouls';
+      }
+
+      __setGoogleResponseByBoss(boss, callback,context) {
+        var httpRequest = new XMLHttpRequest();
+        if (!httpRequest) {
+          console.log("broken");
+        }
+
+        var url = this.__createGoogleSearchQueryFromBoss(boss);
+        httpRequest.onreadystatechange = checkResponse;
+        httpRequest.open('GET', url);
+        httpRequest.send();
+
+        function checkResponse() {
+          if (httpRequest.readyState === XMLHttpRequest.DONE) {
+            if (httpRequest.status === 200) {
+              context.googleResponse = httpRequest.responseText;
+              callback(context);
+            } else {
+              console.log('There was a problem with the request.');
+            }
+        }
+      }
+    }
+
+}
+
+    window.customElements.define(DarksoulsComponent.is, DarksoulsComponent);
+  </script>
+</dom-module>

@@ -1,0 +1,76 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/app-layout/app-layout.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../../bower_components/app-route/app-location.html">
+<link rel="import" href="../../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel= "import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="/src/polymer-flags-app/flags-component.html">
+<link rel="import" href="/src/polymer-flags-app/darksouls-component.html">
+<link rel="import" href="/src/polymer-flags-app/another-page.html">
+
+<dom-module id="polymer-flags-app">
+  <template>
+    <style>
+    :host {
+      display: block;
+      font-family: Georgia, serif;
+    }
+
+    app-toolbar {
+      background-color: var(--google-grey-700);
+      color: white;
+      text-shadow: black 0px 0px 1px;
+      margin: 20px 0;
+    }
+    </style>
+
+    <app-location route="{{route}}"></app-location>
+    <app-route
+        route="{{route}}"
+        pattern="/:page"
+        data="{{routeData}}"
+        tail="{{subroute}}">
+    </app-route>
+
+    <app-header>
+      <app-toolbar>
+        <div main-title>Who's flag is it anyways</div>
+      </app-toolbar>
+    </app-header>
+
+    <iron-pages selected="[[routeData.page]]" attr-for-selected="name">
+      <flags-component name="flags"></flags-component>
+      <another-page name="another"></another-page>
+      <darksouls-component name="ds"></flags-component>
+    </iron-pages>
+
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class PolymerFlagsApp extends Polymer.Element {
+      static get is() { return 'polymer-flags-app'; }
+      static get properties() {
+        return {
+         route: {
+           type: Object
+         },
+         routeData: {
+           type: Object
+         },
+         subroute: {
+           type: Object
+         }
+        };
+      }
+}
+
+    window.customElements.define(PolymerFlagsApp.is, PolymerFlagsApp);
+  </script>
+</dom-module>

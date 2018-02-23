@@ -1,0 +1,6 @@
+{
+  "name": "polymer-flags",
+  "short_name": "polymer-flags",
+  "start_url": "/",
+  "display": "standalone"
+}
