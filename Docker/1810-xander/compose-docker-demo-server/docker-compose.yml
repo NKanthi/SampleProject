@@ -1,0 +1,10 @@
+version: '3'
+services:
+  docker-server:
+    build: .
+    ports:
+     - "8081:5000"
+    volumes:
+     - .:/code
+  redis:
+    image: "redis:alpine"

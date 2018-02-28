@@ -1,0 +1,17 @@
+version: '3'
+services:
+  docker-server:
+    build: ./compose-docker-demo-server
+    ports:
+     - "8081:80"
+    volumes:
+     - ./compose-docker-demo-server:/code
+  redis:
+    image: "redis:alpine"
+
+  docker-client:
+    build: ./compose-docker-demo-client
+    depends_on:
+     - docker-server
+    stdin_open: true
+    tty: true
