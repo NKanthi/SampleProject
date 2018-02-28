@@ -3,7 +3,7 @@ services:
   docker-server:
     build: ./compose-docker-demo-server
     ports:
-     - "8081:80"
+     - "8083:80"
     volumes:
      - ./compose-docker-demo-server:/code
   redis:

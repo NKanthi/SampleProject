@@ -7,4 +7,4 @@ ADD ./src/dockerDemo /app
 
 #compiles java code
 RUN javac Main.java
-
+CMD ["java", "Main"]
