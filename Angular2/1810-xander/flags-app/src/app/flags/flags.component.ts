@@ -8,16 +8,17 @@ import { MatButtonModule } from '@angular/material'
   templateUrl: './flags.component.html',
   styleUrls: ['./flags.component.css']
 })
+
+@Injectable()
 export class FlagsComponent implements OnInit {
-  countryA: object;
-  countryB: object;
+  countryA: any;
+  countryB: any;
   ImgSrcCountryCode: string;
   correctAnswer: string;
   userAnswer: string;
-  countryCodesResponse: object;
+  countryCodesResponse: any;
   outputMessage: string;
 
-  @Injectable()
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -26,7 +27,7 @@ export class FlagsComponent implements OnInit {
 
   getCountriesFromJson() {
     this.http.get('../assets/countrycodes.json').subscribe(data => {
-      this.countryCodesResponse = data.countrycodes
+      this.countryCodesResponse = data['countrycodes'];
       this.setCountriesAndAwnser();
     });
   }
