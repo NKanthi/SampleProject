@@ -1,0 +1,12 @@
+<div>
+<img id="flag-img" src="../assets/svg/{{ImgSrcCountryCode}}.svg">
+</div>
+<div>
+  <button id="buttonOne" (click)="UserSelectanswer($event)" mat-raised-button color="primary">{{countryA.name}}</button>
+  <button id="buttonTwo" (click)="UserSelectanswer($event)" mat-raised-button color="primary">{{countryB.name}}</button>
+  <p>{{outputMessage}}</p>
+</div>
+
+<div>
+    <button id="buttonOne" (click)="reset()" mat-raised-button color="accent">Another</button>
+</div>
