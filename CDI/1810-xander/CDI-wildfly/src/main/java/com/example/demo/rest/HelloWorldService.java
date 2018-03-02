@@ -1,4 +1,5 @@
 package com.example.demo.rest;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
@@ -7,7 +8,7 @@ import javax.inject.Inject;
 public class HelloWorldService {
 
   @Inject
-  HelloWorldPerson person;
+  private HelloWorldPerson person;
 
   public HelloWorldPerson getPerson() {
     person.populate("xander", 19, "dev");
