@@ -29,7 +29,6 @@ export class FlagsComponent implements OnInit {
   getCountriesFromJson() {
     this.http.get('../assets/countrycodes.json').subscribe(data => {
       this.countryCodesResponse = data.countrycodes
-      console.log(this.countryCodesResponse);
       this.setCountriesAndAwnser();
     });
   }
@@ -49,9 +48,6 @@ export class FlagsComponent implements OnInit {
       this.correctAnswer = this.countryB.name;
       this.ImgSrcCountryCode = this.countryB.code;
     }
-
-    console.log(this.correctAnswer);
-
   }
 
   getRandomCountry() {
