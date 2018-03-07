@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type="text/xsl" href="phonestyle.xsl"?>
+
+<phones xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+    <phone model="S88">
+        <model_simple>Samung S88</model_simple>
+        <model_complex>GR89123HAZ</model_complex>
+        <CPU_model>Snap dragon infinity fabric</CPU_model>
+        <RAM>1TB</RAM>
+        <storage>24PB</storage>
+        <price>780</price>
+    </phone>
+
+    <phone model="X5s">
+        <model_simple>Iphone X5s</model_simple>
+        <model_complex>IOS12848_ST-EV-E-JO-BS</model_complex>
+        <CPU_model>Qualcom-Z</CPU_model>
+        <RAM>500GB</RAM>
+        <storage>12PB</storage>
+        <price>1560</price>
+    </phone>
+</phones>
