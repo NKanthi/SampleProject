@@ -10,7 +10,14 @@
                             <xs:element name="CPU_model" type="xs:string"/>
                             <xs:element name="RAM" type="xs:string"/>
                             <xs:element name="storage" type="xs:string"/>
-                            <xs:element name="price" type="xs:int"/>
+                            <xs:element name="price" type="xs:int">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:int">
+                                        <xs:minInclusive value="150"/>
+                                        <xs:maxInclusive value="1800"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                         </xs:sequence>
                         <xs:attribute name="model"/>
                     </xs:complexType>

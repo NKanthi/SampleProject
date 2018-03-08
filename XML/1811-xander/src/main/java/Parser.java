@@ -31,10 +31,10 @@ public class Parser {
     }
   }
 
-  public List<String> getPhoneSpecsListByModel(String model) {
+  public List<String> getPhoneSpecsListByModel(String phoneModel) {
     List<String> phoneSpecs = new ArrayList<>();
     try {
-      XPathExpression expr = xPath.compile("/phones/phone[@model='" + model + "']/*/text()");
+      XPathExpression expr = xPath.compile(Constants.FIND_PHONE_BY_MODEL.replaceAll("phoneModel", phoneModel));
       NodeList nl = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
 
       for(int i = 0; i < nl.getLength(); i++) {
