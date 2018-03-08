@@ -1,3 +1,3 @@
-<p>
-  darksouls-quiz works!
-</p>
+<div *ngIf="bossList">
+  <quiz-main [header]="quizHeader" [dataSource]="bossList"></quiz-main>
+</div>

@@ -1,6 +1,4 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { QuizButtonComponent } from '../quiz-components/quiz-button/quiz-button.component';
-import { QuizMainComponent } from '../quiz-components/quiz-main/quiz-main.component';
 import { CountriesService } from './countries.service';
 
 @Component({
@@ -20,7 +18,6 @@ export class CountriesQuizComponent implements OnInit {
   ngOnInit() {
     this.getCountryList().subscribe(data => {
       this.countryList = data['countrycodes'];
-      console.log(this.countryList);
     });
   }
 

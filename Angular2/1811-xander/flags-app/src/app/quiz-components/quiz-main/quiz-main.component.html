@@ -1,12 +1,17 @@
 <div style="text-align:center">
   <h1>{{header}}</h1>
   <div>
-    <img id="flag-img" src="{{dataSource}}">
+    <img id="flag-img" src="{{imgSrc}}">
   </div>
 
   <div>
-    <quiz-button></quiz-button>
-    <quiz-button></quiz-button>
+    <quiz-button (click)="selectedOption($event)" [option]="optionA.name"></quiz-button>
+    <quiz-button (click)="selectedOption($event)" [option]="optionB.name"></quiz-button>
+    <p>{{outputMessage}}</p>
   </div>
+
+  <div>
+    <button (click)="reset()">Another</button>
+  <div>
 
 </div>

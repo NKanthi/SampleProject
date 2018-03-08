@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material';
 
 @Component({
@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material';
   styleUrls: ['./quiz-button.component.css']
 })
 export class QuizButtonComponent implements OnInit {
+  @Input('option') option : string = 'option';
 
   constructor() { }
 

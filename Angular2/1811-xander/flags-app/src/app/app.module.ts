@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { FlagsService } from './flags/flags.service';
 import { CountriesService } from './countries-quiz/countries.service';
+import { DarksoulsService } from './darksouls-quiz/darksouls.service';
 
 import { FlagsComponent } from './flags/flags.component';
 import { MatButtonModule } from '@angular/material/button';
@@ -36,7 +37,7 @@ import { QuizMainComponent } from './quiz-components/quiz-main/quiz-main.compone
     MatButtonModule,
     AppRoutingModule
   ],
-  providers: [FlagsService, CountriesService],
+  providers: [FlagsService, CountriesService, DarksoulsService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
