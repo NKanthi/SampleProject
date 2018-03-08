@@ -5,22 +5,26 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.*;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathFactory;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathExpressionException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Parser {
-  DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
-  XPathFactory xPathFactory = XPathFactory.newInstance();
+ class Parser {
+  private DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+  private XPathFactory xPathFactory = XPathFactory.newInstance();
 
-  DocumentBuilder builder;
-  Document doc;
+  private DocumentBuilder builder;
+  private Document doc;
 
-  XPath xPath;
+  private XPath xPath;
 
-  public Parser(File XMLpath) {
+   Parser(File XMLpath) {
     try {
       builder = docBuilderFactory.newDocumentBuilder();
       xPath = xPathFactory.newXPath();
@@ -31,7 +35,7 @@ public class Parser {
     }
   }
 
-  public List<String> getPhoneSpecsListByModel(String phoneModel) {
+   public List<String> getPhoneSpecsListByModel(String phoneModel) {
     List<String> phoneSpecs = new ArrayList<>();
     try {
       XPathExpression expr = xPath.compile(Constants.FIND_PHONE_BY_MODEL.replaceAll("phoneModel", phoneModel));
