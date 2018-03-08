@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE phones SYSTEM "dtd.dtd">
+
+<phones>
+    <phone>
+        <model_simple>Samung S88</model_simple>
+        <model_complex>GR89123HAZ</model_complex>
+        <CPU_model>Snap dragon infinity fabric</CPU_model>
+        <RAM>1TB</RAM>
+        <storage>24PB</storage>
+        <price>780</price>
+    </phone>
+
+    <phone>
+        <model_simple>Iphone XXXXXXXs</model_simple>
+        <model_complex>IOS12848_ST-EV-E-JO-BS</model_complex>
+        <CPU_model>Qualcom-Z</CPU_model>
+        <RAM>500GB</RAM>
+        <storage>12PB</storage>
+        <price>1560</price>
+    </phone>
+</phones>

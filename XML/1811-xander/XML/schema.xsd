@@ -1,0 +1,28 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="phones">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="phone">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="model_simple" type="xs:string"/>
+                            <xs:element name="model_complex" type="xs:string"/>
+                            <xs:element name="CPU_model" type="xs:string"/>
+                            <xs:element name="RAM" type="xs:string"/>
+                            <xs:element name="storage" type="xs:string"/>
+                            <xs:element name="price" type="xs:int">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:int">
+                                        <xs:minInclusive value="150"/>
+                                        <xs:maxInclusive value="1800"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="model"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

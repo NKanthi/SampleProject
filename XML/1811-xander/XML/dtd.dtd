@@ -1,0 +1,9 @@
+ <!ELEMENT phones (phone)*>
+        <!ELEMENT phone (model_simple,model_complex,CPU_model,RAM,storage,price)>
+            <!ELEMENT model_simple (#PCDATA)>
+            <!ELEMENT model_complex (#PCDATA)>
+            <!ELEMENT CPU_model (#PCDATA)>
+            <!ELEMENT RAM (#PCDATA)>
+            <!ELEMENT storage (#PCDATA)>
+            <!ELEMENT price (#PCDATA)>
+
