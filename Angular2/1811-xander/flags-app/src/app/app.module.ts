@@ -5,13 +5,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
-import { FlagsService } from './flags/flags.service';
 import { CountriesService } from './countries-quiz/countries.service';
 import { DarksoulsService } from './darksouls-quiz/darksouls.service';
 
-import { FlagsComponent } from './flags/flags.component';
 import { MatButtonModule } from '@angular/material/button';
-import { TestcompComponent } from './testcomp/testcomp.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CountriesQuizComponent } from './countries-quiz/countries-quiz.component';
 import { DarksoulsQuizComponent } from './darksouls-quiz/darksouls-quiz.component';
@@ -23,8 +20,6 @@ import { QuizMainComponent } from './quiz-components/quiz-main/quiz-main.compone
 @NgModule({
   declarations: [
     AppComponent,
-    FlagsComponent,
-    TestcompComponent,
     PageNotFoundComponent,
     CountriesQuizComponent,
     DarksoulsQuizComponent,
@@ -37,7 +32,7 @@ import { QuizMainComponent } from './quiz-components/quiz-main/quiz-main.compone
     MatButtonModule,
     AppRoutingModule
   ],
-  providers: [FlagsService, CountriesService, DarksoulsService ],
+  providers: [CountriesService, DarksoulsService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

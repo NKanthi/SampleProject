@@ -25,7 +25,7 @@ export class QuizMainComponent implements OnInit {
     this.optionA = this.dataSource[this.getRandomOptionFromDataSource()];
     this.optionB = this.dataSource[this.getRandomOptionFromDataSource()];
 
-    if(this.optionA == this.optionB){
+    if(this.optionA.name == this.optionB.name){
       this.setOptions();
     }
 

@@ -10,8 +10,4 @@ export class CountriesService {
     return this.http.get("../assets/countrycodes.json");
   }
 
-  test() {
-    console.log('test');
-  }
-
 }

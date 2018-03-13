@@ -17,9 +17,8 @@ export class DarksoulsQuizComponent implements OnInit {
 
   ngOnInit() {
     this.getBossList().subscribe(data => {
-      var tempBossList = data['DSbosses'];
-      this.addsourcesToBossList(tempBossList);
-      this.bossList = tempBossList;
+      this.bossList = data['DSbosses'];
+      this.addsourcesToBossList(this.bossList);
     });
   }
 
@@ -27,10 +26,9 @@ export class DarksoulsQuizComponent implements OnInit {
     return this.darksoulsService.getDSbossList();
   }
 
-  addsourcesToBossList(bossList: any) {
-    this.darksoulsService.addsourcesToBossList(bossList);
+  addsourcesToBossList(dataList: any) {
+    this.darksoulsService.addsourcesToBossList(dataList);
   }
-
 
 
 }
