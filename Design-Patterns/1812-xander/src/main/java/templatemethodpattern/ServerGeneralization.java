@@ -8,7 +8,7 @@ public abstract class ServerGeneralization {
       System.out.println("Server failure");
     }
 
-    if(shutdown()) {
+    if (shutdown()) {
       System.out.println("Server shutdown complete");
     }
   }

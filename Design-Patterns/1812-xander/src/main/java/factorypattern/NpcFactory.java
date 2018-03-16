@@ -14,7 +14,7 @@ public class NpcFactory {
   }
 
   private static void createInstance () {
-    if(instance == null) {
+    if (instance == null) {
       instance = new NpcFactory();
     }
   }
@@ -24,8 +24,8 @@ public class NpcFactory {
      case "Terran": return new Terran();
      case "Protoss": return new Protoss();
      case "Zerg": return new Zerg();
+     default: return null;
    }
-   return null;
   }
 
 }

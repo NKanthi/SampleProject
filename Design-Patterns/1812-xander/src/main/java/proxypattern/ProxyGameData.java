@@ -10,7 +10,7 @@ public class ProxyGameData implements Data {
 
   @Override
   public void getData() {
-    if(gameData == null) {
+    if (gameData == null) {
       gameData = new GameData(dataPath);
     }
     gameData.getData();

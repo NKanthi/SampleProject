@@ -24,7 +24,7 @@ public class Message implements Subject {
   public void notifyObservers() {
     List<Observer> observersLocal = new ArrayList<Observer>(observers);
 
-    for(Observer obj : observersLocal) {
+    for (Observer obj : observersLocal) {
       obj.update();
     }
   }

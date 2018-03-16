@@ -11,7 +11,7 @@ public class MessageSubscriber implements Observer {
 
   public void update() {
     message = (String) subject.getUpdate(this);
-    if(message == null) {
+    if (message == null) {
       System.out.println("No new message");
     } else {
       System.out.println(name + ": " + message);

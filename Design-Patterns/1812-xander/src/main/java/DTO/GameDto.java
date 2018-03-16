@@ -1,12 +1,12 @@
 package DTO;
 
-public class GameDTO {
+public class GameDto {
   private String title;
   private String ageRating;
   private int averageReviewScore;
   private int id;
 
-  public GameDTO(int id,String title, String ageRating, int averageReviewScore) {
+  public GameDto(int id, String title, String ageRating, int averageReviewScore) {
     this.id = id;
     this.title = title;
     this.ageRating = ageRating;

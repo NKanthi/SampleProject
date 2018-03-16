@@ -25,7 +25,7 @@ public class PersonCollection implements Container {
     }
 
     public Person next() {
-      if(this.hasNext()) {
+      if (this.hasNext()) {
         return people.get(index++);
       }
       return null;

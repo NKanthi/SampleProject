@@ -1,5 +1,5 @@
-import DAO.GameDAO;
-import DTO.GameDTO;
+import DAO.GameDao;
+import DTO.GameDto;
 import builderpattern.PersonBuilder;
 import compositepattern.Directory;
 import compositepattern.File;
@@ -12,7 +12,6 @@ import observerpattern.Message;
 import observerpattern.MessageSubscriber;
 import observerpattern.Observer;
 import proxypattern.Data;
-import proxypattern.GameData;
 import proxypattern.ProxyGameData;
 import servicelocatorpattern.Service;
 import servicelocatorpattern.ServiceLocator;
@@ -90,7 +89,7 @@ public class Demo {
     PersonCollection personCollection = new PersonCollection();
     personCollection.add(new Person("Xander", "dev"), new Person("Haoran", "Datascience"));
 
-    for(Iterator iter = personCollection.getIterator(); iter.hasNext();) {
+    for (Iterator iter = personCollection.getIterator(); iter.hasNext();) {
       Person person = (Person)iter.next();
       String name = person.getName();
       String occupation = person.getOccupation();
@@ -134,13 +133,15 @@ public class Demo {
   }
 
   private void DAOandDTO() {
-    GameDAO gameDAO = new GameDAO();
+    GameDao gameDao = new GameDao();
 
-    System.out.println(gameDAO.getAllGames());
+    System.out.println(gameDao.getAllGames());
 
-    System.out.println(gameDAO.getGameByID(1));
+    System.out.println(gameDao.getGameByID(1));
 
-    GameDTO stardewValley = gameDAO.getGameByTitle("Stardew Valley");
+    System.out.println(gameDao.getGamesByAverageReviewScore(8));
+
+    GameDto stardewValley = gameDao.getGameByTitle("Stardew Valley");
 
     System.out.println(stardewValley);
   }
