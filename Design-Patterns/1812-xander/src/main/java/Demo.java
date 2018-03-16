@@ -1,5 +1,6 @@
 import DAO.GameDAO;
 import DTO.GameDTO;
+import builderpattern.PersonBuilder;
 import compositepattern.Directory;
 import compositepattern.File;
 import factorypattern.Npc;
@@ -10,6 +11,11 @@ import iteratorpattern.PersonCollection;
 import observerpattern.Message;
 import observerpattern.MessageSubscriber;
 import observerpattern.Observer;
+import proxypattern.Data;
+import proxypattern.GameData;
+import proxypattern.ProxyGameData;
+import servicelocatorpattern.Service;
+import servicelocatorpattern.ServiceLocator;
 import strategypattern.Context;
 import strategypattern.OperationOne;
 import strategypattern.OperationThree;
@@ -46,6 +52,15 @@ public class Demo {
     System.out.println(BREAK_LINE);
 
     d.compositePattern();
+    System.out.println(BREAK_LINE);
+
+    d.serviceLocatorPattern();
+    System.out.println(BREAK_LINE);
+
+    d.builderPattern();
+    System.out.println(BREAK_LINE);
+
+    d.proxyPattern();
     System.out.println(BREAK_LINE);
   }
 
@@ -148,9 +163,37 @@ public class Demo {
 
 
     secret.list();
+  }
 
+  private void serviceLocatorPattern() {
+    Service service = ServiceLocator.getService("serviceone");
+    service.execute();
 
+    service = ServiceLocator.getService("serviceone");
+    service.execute();
 
+    service = ServiceLocator.getService("servicetwo");
+    service.execute();
 
+    service = ServiceLocator.getService("servicethree");
+    service.execute();
+
+    service = ServiceLocator.getService("servicetwo");
+    service.execute();
+  }
+
+  private void builderPattern() {
+    PersonBuilder bp = new PersonBuilder();
+
+    builderpattern.Person xander = bp.withName("xander").withAge(20).withOccupation("dev").withCanDance(false).build();
+
+    System.out.println(xander.getName() + " " + xander.getAge() + " " + xander.isCanDance());
+  }
+
+  private void proxyPattern() {
+    Data gameData = new ProxyGameData("/game/data.bin");
+
+    gameData.getData();
+    gameData.getData();
   }
 }
