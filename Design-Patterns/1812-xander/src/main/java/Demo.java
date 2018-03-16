@@ -1,5 +1,7 @@
 import DAO.GameDAO;
 import DTO.GameDTO;
+import compositepattern.Directory;
+import compositepattern.File;
 import factorypattern.Npc;
 import factorypattern.NpcFactory;
 import iteratorpattern.Iterator;
@@ -41,6 +43,9 @@ public class Demo {
     System.out.println(BREAK_LINE);
 
     d.DAOandDTO();
+    System.out.println(BREAK_LINE);
+
+    d.compositePattern();
     System.out.println(BREAK_LINE);
   }
 
@@ -123,5 +128,29 @@ public class Demo {
     GameDTO stardewValley = gameDAO.getGameByTitle("Stardew Valley");
 
     System.out.println(stardewValley);
+  }
+
+  private void compositePattern() {
+    Directory secret = new Directory("SECRET");
+    Directory totallySafe = new Directory("TOTALLYSAFE");
+
+    totallySafe.add(new File("oranges"));
+    totallySafe.add(new File("apples"));
+    totallySafe.add(new File("melons"));
+    totallySafe.add(new File("grapes"));
+
+    secret.add(new File("euro"));
+    secret.add(new File("yen"));
+    secret.add(new File("dollar"));
+    secret.add(new File("crowns"));
+
+    secret.add(totallySafe);
+
+
+    secret.list();
+
+
+
+
   }
 }
