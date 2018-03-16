@@ -1,0 +1,1 @@
+For singleton pattern see NpcFactory
