@@ -1,3 +1,0 @@
-Readme file
-
-Entering text here...
