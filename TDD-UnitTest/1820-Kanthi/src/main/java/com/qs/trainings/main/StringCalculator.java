@@ -10,11 +10,6 @@ public class StringCalculator {
                 result = result + Integer.parseInt(num);
             }
         }
-        /*if(numbersArray.length > 2){
-            throw new RuntimeException("More than 2 numbers are not allowed");
-        } else {
-
-        }*/
         return result;
     }
 }

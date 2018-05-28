@@ -10,12 +10,7 @@ import org.junit.Test;
  *
  */
 public class StringCalculatorTest {
-    /*
-    @Test(expected = RuntimeException.class)
-    public final void whenMoreThanTwoNumbersAreUsedThenExceptionIsThrown(){
-        String threeNumberString = "1,2,3";
-        int result = StringCalculator.add(threeNumberString);
-    }*/
+
     @Test
     public final void whenTwoNumbersAreUsedThenNoExceptionIsThrown(){
         String twoNumberString = "1,2";
